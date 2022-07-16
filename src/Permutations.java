@@ -1,30 +1,44 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 
 public class Permutations {
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
-		int n = scan.nextInt();
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		PrintStream printStream = new PrintStream(System.out);
+
+		int n = Integer.parseInt(reader.readLine());
 		if (n == 1) {
-			System.out.println(1);
+			printStream.print("1");
 			return;
 		}
+
 		if (n == 2 || n == 3) {
-			System.out.println("NO SOLUTION");
+			printStream.print("NO SOLUTION");
 			return;
 		}
 
-		String s1 = "", s2 = "";
+		StringBuilder s = new StringBuilder();
 
-		for (int i = 1; i <= n; i++) {
-			if (i % 2 == 0) {
-				s1 += i + " ";
-			} else {
-				s2 += i + " ";
+		if (n % 2 == 0) {
+			for (int i = 2; i <= n; i += 2) {
+				s.append(i).append(" ");
+			}
+			for (int i = 1; i < n; i += 2) {
+				s.append(i).append(" ");
+			}
+		} else {
+			for (int i = n; i > 0; i -= 2) {
+				s.append(i).append(" ");
+			}
+			for (int i = n - 1; i > 0; i -= 2) {
+				s.append(i).append(" ");
 			}
 		}
-		System.out.println(s1 + s2);
 
+		printStream.print(s.toString());
 	}
-
 }
