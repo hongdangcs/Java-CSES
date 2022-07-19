@@ -6,12 +6,11 @@ public class NumberSpiral {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		PrintWriter pw = new PrintWriter(System.out);
-		long t = Integer.parseInt(br.readLine()), max;
+		long t = Integer.parseInt(br.readLine());
 		while (t-- > 0) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			long i = Integer.parseInt(st.nextToken());// 2
-			long j = Integer.parseInt(st.nextToken());// 3
-
+			long i = Integer.parseInt(st.nextToken());
+			long j = Integer.parseInt(st.nextToken());
 			pw.println(numberSpiral(i, j));
 		}
 		pw.close();
