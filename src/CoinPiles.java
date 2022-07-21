@@ -13,6 +13,7 @@ public class CoinPiles {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			long i = Integer.parseInt(st.nextToken());
 			long j = Integer.parseInt(st.nextToken());
+
 			if (i > j) {
 				long k = i - j;
 				i -= 2 * k;
