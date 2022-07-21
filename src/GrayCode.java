@@ -10,23 +10,34 @@ public class GrayCode {
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		long t = Integer.parseInt(br.readLine());
-		grayCodes(t);
+		long n = Integer.parseInt(br.readLine());
+		boolean[] used = new boolean[1 << n];
+        StringBuilder b = new StringBuilder();
+        int start = 0;
+        while(true){
+            if(used[start]) break;
+            used[start] = true;
+            String s = Integer.toBinaryString(start);
+            long diff = n - s.length();
+            for(int i = 0; i < diff; i++){
+                b.append('0');
+            }
+            b.append(s);
+            b.append("\n");
+            for(int i = 0; i < n; i++){
+                int next = start ^ (1 << i);
+                if(!used[next]){
+                    start = next;
+                    break;
+                }
+            }
+        }
+        pw.print(b);
 		pw.close();
 
 	}
 
-	public static void grayCodes(long n) {
-		if(n==0) {
-			pw.println();
-			return;
-		}
-		pw.print("0");
-		pw.print("1");
-		grayCodes(n-1);
-		
-	}
 	public static void printZero(long n) {
-		
+
 	}
 }
