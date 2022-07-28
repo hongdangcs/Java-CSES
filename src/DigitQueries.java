@@ -8,16 +8,37 @@ public class DigitQueries {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		PrintWriter pw = new PrintWriter(System.out);
-		long t = Integer.parseInt(br.readLine());
-		StringBuilder str = new StringBuilder();
-		for (int i = 1; i < 10000; i++) {
-			str.append(i);
-		}
-		while (t-- > 0) {
+		int q = Integer.parseInt(br.readLine());
+
+		StringBuilder sb = new StringBuilder(3 * q);
+		long loc, dec, ten, prod, num, loc1;
+		int mod;
+		for (int i = 0; i < q; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
-			int k = Integer.parseInt(st.nextToken());
-			pw.println(str.charAt(k - 1));
+			loc = Long.parseLong(st.nextToken());
+			if (loc <= 9) {
+				sb.append(loc);
+			} else {
+				dec = 1;
+				ten = 1;
+				prod = 9;
+				while (prod < loc) {
+					loc -= prod;
+
+					dec++;
+					ten *= 10;
+					prod = 9 * dec * ten;
+				}
+
+				loc1 = loc - 1;
+				num = ten + ((loc1) / dec);
+				mod = (int) ((loc1) % dec);
+				sb.append(String.valueOf(num).charAt(mod));
+			}
+			sb.append("\n");
 		}
+
+		pw.print(sb);
 		br.close();
 		pw.close();
 	}
