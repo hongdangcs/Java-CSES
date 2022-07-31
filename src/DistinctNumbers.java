@@ -18,6 +18,7 @@ public class DistinctNumbers {
 			lst = ar.get(i);
 		}
 		pw.print(ans);
+		
 		br.close();
 		pw.close();
 	}
